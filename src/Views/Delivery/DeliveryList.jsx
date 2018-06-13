@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {NavLink} from 'react-router-dom';
+import {EditOpen} from "../../Store/Actions.js";
 
 
 import {List, ListItem, ListItemIcon, ListItemText, Divider, Hidden, Button, } from '@material-ui/core';
@@ -14,12 +14,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 class DeliveryList extends React.Component {
     render(){
-    const {Deliveries} = this.props;
+    const {Deliveries, EditOpen} = this.props;
     return (
         <div>
-        <NavLink to="/DostawyEdytuj">
-          <Button variant="raised" color="primary">Dodaj Dostawę</Button>
-        </NavLink>
+          <Button variant="raised" color="primary" onClick={EditOpen}>Dodaj Dostawę</Button>
         <Table>
         <TableHead>
           <TableRow>
@@ -69,6 +67,6 @@ const mapStateToProps = state => {
         Deliveries: state.Delivery.Deliveries}
   };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {EditOpen};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeliveryList);

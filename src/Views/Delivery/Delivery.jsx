@@ -15,12 +15,21 @@ class Delivery extends React.Component {
   
   render(){
     return (
-      
+      <Card>
+        <CardHeader/>
+          <CardContent>
+           { this.props.EditOpen
+            ?<DeliveryEdit />
+            :<DeliveryList />}
+          </CardContent>
+      </Card>
     );
   }
 }
 const mapStateToProps = state => {
-  return{}};
+  return{
+    EditOpen: state.Delivery.EditOpen
+  }};
 
 const mapDispatchToProps = {DeliveryFetched};
 

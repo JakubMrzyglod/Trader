@@ -2,6 +2,23 @@ export const ProductsFetched = (Products) => ({
     type: 'FETCH_PRODUCTS_SUCCESS',
     Products
 });
+export const EditOpen = () =>({
+    type: 'EDIT_OPEN'
+})
+export const EditClose =() => ({
+    type: 'EDIT_CLOSE'
+})
+export const ChangeSuppolier = (name) => (e) =>({
+    type:  'CHANGE_SUPPOLIER',
+    text: e.target.value,
+    name: name
+})
+
+
+
+
+
+
 export const deleteProduct = (id) => ({
     type: 'DELETE_PRODUCT',
     id

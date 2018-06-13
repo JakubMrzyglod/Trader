@@ -1,7 +1,11 @@
 
 const initialState ={
-    Value:'',
-    Suppoliers:[],
+    EditOpen: false,
+    value:'',
+    Suppolier:{
+        Name:'nazwa',
+        TaxNumber:'545454'},
+
     Deliveries:[],
     Products:[
         {"id": 1, "Name": "Xiaomi",  "Price": "500", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000},
@@ -14,9 +18,17 @@ export const Delivery= (state=initialState, action) => {
         return{
             ...state, Suppoliers: action.Data.Suppoliers, Deliveries: action.Data.Deliveries
         }
-        case 'HANDLE_INPUT_CHANGE':
+        case 'EDIT_OPEN':
         return{
-            ...state, Value: action.text
+            ...state, EditOpen: true
+        }
+        case 'EDIT_CLOSE':
+        return{
+            ...state, EditOpen: false
+        }
+        case 'CHANGE_SUPPOLIER':
+        return{
+            ...state,Suppolier:{...state.Suppolier, [action.name]:action.text}
         }
         default:
         return state
