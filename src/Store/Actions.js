@@ -8,10 +8,15 @@ export const EditOpen = () =>({
 export const EditClose =() => ({
     type: 'EDIT_CLOSE'
 })
-export const ChangeSuppolier = (name) => (e) =>({
+export const ChangeSuppolier =( name, text)=>({
     type:  'CHANGE_SUPPOLIER',
-    text: e.target.value,
-    name: name
+    text,
+    name
+})
+export const ChangeProductValue =( name, text)=>({
+    type:  'CHANGE_PRODUCT_VALUE',
+    text,
+    name
 })
 
 

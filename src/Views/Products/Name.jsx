@@ -6,15 +6,15 @@ export class Name extends React.Component{
     constructor(){
         super()
         this.state={
-            Value1:'dafdsfadf',
+            Value1:'hhh',
             Value2:'dafdsfadf',
             Value3:'dafdsfadf',
             Value4:'dafdsfadf',
             Value5:'dafdsfadf'
         }
     }
-    handleInputChange1 = e => {
-        this.setState({Value1: e.target.value})
+    handleInputChange1 = name =>  e => {
+        this.setState({[name]: e.target.value})
     }
     handleInputChange2 = e => {
         this.setState({Value2: e.target.value})
@@ -37,7 +37,7 @@ export class Name extends React.Component{
             className="form-control"
             name="jeden"
             value={this.state.Value1}
-            onChange={this.handleInputChange1} />
+            onChange={this.handleInputChange1('Value1')} />
 
             <Input
             type="text"

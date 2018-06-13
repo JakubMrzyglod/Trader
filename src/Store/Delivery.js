@@ -1,10 +1,23 @@
 
 const initialState ={
-    EditOpen: false,
-    value:'',
+    EditOpen: true,
     Suppolier:{
-        Name:'nazwa',
-        TaxNumber:'545454'},
+        Name:'',
+        TaxNumber:'',
+        ZipCode:'',
+        Adress:'',
+        City:'',
+        Date:'',
+        DocNumber:''
+    },
+    NewProduct:{
+        Name:'',
+        Quantity:0,
+        Price:0,
+        Tax:0,
+        Value:0,
+        TaxValue:0
+    },
 
     Deliveries:[],
     Products:[
