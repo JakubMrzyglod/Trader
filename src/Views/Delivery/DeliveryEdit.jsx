@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {EditClose } from '../../Store/Actions.js';
-import Suppolier from './DeliveryEditSuppolier.jsx'
-import NewProduct from './DeliveryAddNewProduct.jsx'
+import Suppolier from './EditSuppolier.jsx';
+import NewProduct from './NewProduct.jsx';
+import Details from './Details.jsx';
+import ProductsList from './ProductsList.jsx';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -31,54 +33,11 @@ class DeliveryEdit extends React.Component {
         
     return (
         <div>
-            {/* DANE DOSTAWCY */}
             <Suppolier />
-
-            {/* LISTA PRODUKTÓW */}
-            {/* FORMULARZ DODAWANIA */}
-
-          <NewProduct />
-            {/* LISTA */}
-<List>
-             {[].map(Item=>{
-                return(
-                    <ListItem button>
-                    <ListItemText primary={
-                    <Grid container spacing={32} >
-                        <Grid item xs={12} sm={2} md={2} lg={4}>
-                                <TextField fullWidth disabled/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={1}>
-                                <TextField fullWidth  disabled/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}>
-                                <TextField fullWidth disabled 
-                                InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}}/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={1}>
-                                <TextField fullWidth disabled 
-                                InputProps={{endAdornment:<InputAdornment position="end">%</InputAdornment>}}/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}>
-                                <TextField fullWidth disabled 
-                                InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}}/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}>
-                                <TextField fullWidth disabled 
-                                InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}}/>
-                        </Grid>
-                    </Grid>}
-                    />
-                    <ListItemSecondaryAction>
-                        <IconButton color="secondary" >
-                            <Delete />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                    </ListItem>
-
-                )
-            })} 
-            {/* PODSUMOWANIE ZAMOWIENIA */}
+            <Details />
+            <NewProduct />
+            <ProductsList/>
+            {/* <List>
              <ListItem>
                     <ListItemText primary={
                     <Grid container spacing={32} >
@@ -98,7 +57,7 @@ class DeliveryEdit extends React.Component {
                         </Grid>
                     </Grid>} />
                 </ListItem>
-            </List>
+            </List> */}
          
         <Button variant="raised" color="primary" className={classes.button}>Zapisz</Button>            
         <Button variant="Inlined" color="default" className={classes.button} onClick={EditClose}>Anuluj</Button>            

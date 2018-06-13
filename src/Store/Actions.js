@@ -13,6 +13,11 @@ export const ChangeSuppolier =( name, text)=>({
     text,
     name
 })
+export const ChangeDeliveryInfo =( name, text)=>({
+    type:  'CHANGE_DELIVERY_INFO',
+    text,
+    name
+})
 export const ChangeProductValue =( name, text)=>({
     type:  'CHANGE_PRODUCT_VALUE',
     text,
