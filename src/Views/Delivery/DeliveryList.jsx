@@ -13,11 +13,15 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 class DeliveryList extends React.Component {
+    EditDelivery= (id)=>{
+      this.props.EditDelivery(id);
+      this.props.ToggleView();
+    }
     render(){
-    const {Deliveries, EditOpen, EditDelivery} = this.props;
+    const {Deliveries, ToggleView, EditDelivery} = this.props;
     return (
         <div>
-          <Button variant="raised" color="primary" onClick={EditOpen}>Dodaj Dostawę</Button>
+          <Button variant="raised" color="primary" onClick={ToggleView}>Dodaj Dostawę</Button>
         <Table>
         <TableHead>
           <TableRow>
@@ -33,7 +37,7 @@ class DeliveryList extends React.Component {
         <TableBody>
           {Deliveries.map(Delivery => {
             return (
-            <TableRow key={Delivery.id} hover onClick={()=>EditDelivery(Delivery.id)}>
+            <TableRow key={Delivery.id} hover onClick={()=>this.EditDelivery(Delivery.id)}>
                 <TableCell>
                     {Delivery.Suppolier.Name}
                     <Typography variant="caption">

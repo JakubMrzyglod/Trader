@@ -6,6 +6,7 @@ import Suppolier from './EditSuppolier.jsx';
 import NewProduct from './NewProduct.jsx';
 import Details from './Details.jsx';
 import ProductsList from './ProductsList.jsx';
+import Summary from './Summary.jsx';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -19,6 +20,7 @@ import {
     MenuItem
 } from '@material-ui/core';
 import { Delete, Add } from '@material-ui/icons';
+import Summary from './Summary.js';
 
 const styles = theme => ({
     button: {
@@ -29,7 +31,7 @@ const styles = theme => ({
  
 class DeliveryEdit extends React.Component {
     render(){
-        const {classes, EditClose} = this.props;
+        const {classes, ToggleView} = this.props;
         
     return (
         <div>
@@ -37,30 +39,10 @@ class DeliveryEdit extends React.Component {
             <Details />
             <NewProduct />
             <ProductsList/>
-            {/* <List>
-             <ListItem>
-                    <ListItemText primary={
-                    <Grid container spacing={32} >
-                        <Grid item xs={12} sm={2} md={2} lg={4}>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={1}>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={1}>Rezem:
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}><TextField fullWidth  disabled 
-                        InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}}/>
-                        </Grid>
-                        <Grid item xs={12} sm={2} md={2} lg={2}><TextField fullWidth  disabled 
-                        InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}}/>
-                        </Grid>
-                    </Grid>} />
-                </ListItem>
-            </List> */}
+            <Summary />
          
         <Button variant="raised" color="primary" className={classes.button}>Zapisz</Button>            
-        <Button variant="Inlined" color="default" className={classes.button} onClick={EditClose}>Anuluj</Button>            
+        <Button variant="Inlined" color="default" className={classes.button} onClick={ToggleView}>Anuluj</Button>            
         </div>
         
   );

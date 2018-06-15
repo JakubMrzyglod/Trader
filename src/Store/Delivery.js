@@ -1,9 +1,10 @@
 let DeliveriesList;
 let EmptyProduct ={id:0,Name:'',Quantity:'',Price:'',Tax:'',Value:'',TaxValue:''};
-let EmptySuppolier = {}
+let EmptySuppolier = {id:0, Name:'', Adress:'', City:'', ZipCode:'',TaxNumber:''}
 let initialState ={
     Fake: false,
     EditOpen: false,
+    Delivery:{valueSummary, TaxValueSummary},
     Date:'a',
     DocNumber:'',
     Suppolier:{},
@@ -75,7 +76,8 @@ export const Delivery= (state=initialState, action) => {
         state.Deliveries.map(Delivery =>Delivery.id === action.id && (DeliveryEdit= Delivery))
         return{
             ...state,Products: DeliveryEdit.Products, Suppolier: DeliveryEdit.Suppolier, 
-            Date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber, EditOpen: true
+            Date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber, EditOpen: true, 
+            Delivery:{...state.Delivery,ValueSummary:DeliveryEdit.Net, TaxValueSummary: DelvieryEdit.Tax}
         }
         default:
         return state
