@@ -1,5 +1,6 @@
 let DeliveriesList;
 let EmptyProduct ={id:0,Name:'',Quantity:'',Price:'',Tax:'',Value:'',TaxValue:''};
+let EmptySuppolier = {}
 let initialState ={
     Fake: false,
     EditOpen: false,
@@ -25,7 +26,7 @@ export const Delivery= (state=initialState, action) => {
             ...state,
             EditOpen: true, 
             Suppolier:{},
-            NewProduct:{id:0},
+            NewProduct:EmptyProduct,
             Products:[]
         }
         case 'EDIT_CLOSE':
