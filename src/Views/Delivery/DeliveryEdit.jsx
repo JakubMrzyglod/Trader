@@ -71,17 +71,12 @@ DeliveryEdit.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
- const deliveryEdit = withStyles(styles)(DeliveryEdit);
 
 
 const mapStateToProps = state => {
-    return{
-        //Suppoliers: state.Delviery.Suppoliers,
-        // Deliveries: state.Delivery.Deliveries,
-        // Products: state.Delivery.Products
-    }
+    return{}
   };
 
 const mapDispatchToProps = {EditClose};
 
-export default connect(mapStateToProps, mapDispatchToProps)(deliveryEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(DeliveryEdit));

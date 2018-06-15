@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {ChangeProductValue} from '../../Store/Actions.js';
+import {RemoveProduct, EditProduct} from '../../Store/Actions.js';
 import {List, ListItem, ListItemText, ListItemSecondaryAction, Grid, TextField, InputAdornment, IconButton} from '@material-ui/core'
 import {Delete} from '@material-ui/icons';
 
 class ProductsList extends React.Component{
-    ChangeProductValue = (name) => e =>{
-        this.props.ChangeProductValue(name, e.target.value)
-    }
     render(){
+       const {Products} = this.props
     return(
         <List>
-             {this.props.Products.map(Product=>{
+             {Products.map(Product=>{
                 return(
-                    <ListItem button>
+                    <ListItem button 
+                    onClick={()=>this.props.EditProduct(Product.id)}
+                    >
                     <ListItemText primary={
                     <Grid container spacing={32} >
                         <Grid item xs={12} sm={2} md={2} lg={4}>
@@ -42,7 +42,10 @@ class ProductsList extends React.Component{
                     </Grid>}
                     />
                     <ListItemSecondaryAction>
-                        <IconButton color="secondary" >
+                        {Product.id}
+                        <IconButton color="secondary" 
+                        onClick={()=>this.props.RemoveProduct(Product.id)}
+                        >
                             <Delete />
                         </IconButton>
                     </ListItemSecondaryAction>
@@ -56,9 +59,9 @@ class ProductsList extends React.Component{
 const mapStateToProps = state => {
     return{
         Products: state.Delivery.Products,
-    }
+        Fake: state.Delivery.Fake}
   };
 
-const mapDispatchToProps = {ChangeProductValue};
+const mapDispatchToProps = {RemoveProduct, EditProduct};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

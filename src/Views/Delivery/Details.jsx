@@ -27,7 +27,7 @@ class Detiles extends React.Component{
 }
 const mapStateToProps = state => {
     return{
-        Delivery: state.Delivery.Delivery,
+        Delivery: state.Delivery,
     }
   };
 

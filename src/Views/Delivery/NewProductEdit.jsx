@@ -9,7 +9,7 @@ class NewProductEdit extends React.Component{
         this.props.ChangeProductValue(name, e.target.value)
     }
     render(){
-        const {Name, Price, Quantity, Tax, Value, TaxValue} = this.props.NewProduct;
+        const {Name, Price, Quantity, Tax, Value, TaxValue, id} = this.props.NewProduct;
     return(
         <Grid container spacing={32}>
                     <Grid item xs={12} sm={2} md={2} lg={4}>
@@ -39,7 +39,7 @@ class NewProductEdit extends React.Component{
                     </Grid>
                     <Grid item xs={12} sm={2} md={2} lg={2}>
                             <TextField label="Wartość VAT" fullWidth 
-                            value={TaxValue} onChange={this.ChangeProductValue('TaxValue')}
+                            value={id} onChange={this.ChangeProductValue('TaxValue')}
                             InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}} disabled/>
                     </Grid>
                     </Grid>)

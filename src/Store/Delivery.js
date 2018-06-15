@@ -1,34 +1,19 @@
-
-const initialState ={
-    EditOpen: true,
-    Delivery:{
-        Date:'',
-        DocNumber:''
-    },
-    Suppolier:{
-        Name:'',
-        TaxNumber:'',
-        ZipCode:'',
-        Adress:'',
-        City:'',
-    },
-    NewProduct:{
-        id:0,
-        Name:'aaa',
-        Quantity:0,
-        Price:0,
-        Tax:0,
-        Value:0,
-        TaxValue:0
-    },
-    Products:[
-        {"id": 1, "Name": "Xiaomi",  "Price": "500", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000},
-        {"id": 2, "Name": "LG", "Price":"1500", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000},
-        {"id": 3, "Name": "Samsung s5",  "Price": "900", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000}
-    ],
+let DeliveriesList;
+let EmptyProduct ={id:0,Name:'',Quantity:'',Price:'',Tax:'',Value:'',TaxValue:''};
+let initialState ={
+    Fake: false,
+    EditOpen: false,
+    Date:'a',
+    DocNumber:'',
+    Suppolier:{},
+    NewProduct:EmptyProduct,
+    Products:[],
     Deliveries:[],
     Suppoliers:[]
 }
+const ChoseProduct = (Products, id) => Products.filter(Product => Product.id === id);
+const RemoveProduct = (Products, id) => Products.filter(Product => Product.id !== id);
+const Sort = (Products) => Products.sort((t1, t2) => (t1.id < t2.id ? -1 : 1));
 export const Delivery= (state=initialState, action) => {
     switch (action.type){
         case 'FETCH_DELIVERY_SUCCESS':
@@ -37,7 +22,11 @@ export const Delivery= (state=initialState, action) => {
         }
         case 'EDIT_OPEN':
         return{
-            ...state, EditOpen: true
+            ...state,
+            EditOpen: true, 
+            Suppolier:{},
+            NewProduct:{id:0},
+            Products:[]
         }
         case 'EDIT_CLOSE':
         return{
@@ -54,6 +43,38 @@ export const Delivery= (state=initialState, action) => {
         case 'CHANGE_PRODUCT_VALUE':
         return{
             ...state, NewProduct:{...state.NewProduct, [action.name]:action.text}
+        }
+        case 'REMOVE_PRODUCT':
+        return{
+            ...state, Products: RemoveProduct(state.Products, action.id)
+        }
+        case 'EDIT_PRODUCT':
+        let NewProduct;
+        state.Products.map(Product=> Product.id === action.id && (NewProduct = Product))
+        return{
+            ...state, NewProduct:NewProduct, Products: RemoveProduct(state.Products, action.id)
+        }
+        case 'ADD_PRODUCT':
+        let stock = state.Products;
+        let NewId = state.NewProduct.id;
+        if(NewId === 0) stock.map(item => (NewId = item.id)) && NewId++
+        stock.push({
+            "id": NewId,
+            "Name": state.NewProduct.Name,
+            "Price": state.NewProduct.Price,
+            "Quantity": state.NewProduct.Quantity,
+            "Tax": state.NewProduct.Tax,
+            "Value": state.NewProduct.Value,
+            "TaxValue": state.NewProduct.TaxValue
+        })         
+        return{
+            ...state,Fake:!state.Fake,Products:Sort(stock),NewProduct:EmptyProduct }
+        case 'EDIT_DELIVERY':
+        let DeliveryEdit;
+        state.Deliveries.map(Delivery =>Delivery.id === action.id && (DeliveryEdit= Delivery))
+        return{
+            ...state,Products: DeliveryEdit.Products, Suppolier: DeliveryEdit.Suppolier, 
+            Date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber, EditOpen: true
         }
         default:
         return state
