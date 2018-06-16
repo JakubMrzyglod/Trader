@@ -15,7 +15,7 @@ class NewProduct extends React.Component{
             <NewProductEdit/>
             } />
             <ListItemSecondaryAction>
-                        <IconButton color="primary" onClick={()=>this.props.AddProduct(2)}>
+                        <IconButton color="primary" onClick={()=>this.props.AddProduct()}>
                             <Add />
                         </IconButton>
                     </ListItemSecondaryAction>

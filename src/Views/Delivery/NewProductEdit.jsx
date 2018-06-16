@@ -34,12 +34,12 @@ class NewProductEdit extends React.Component{
                     </Grid>
                     <Grid item xs={12} sm={2} md={2} lg={2}>
                             <TextField label="Wartość Netto" fullWidth
-                            value={Value} onChange={this.ChangeProductValue('Value')}
+                            value={Value}
                             InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}} disabled/>
                     </Grid>
                     <Grid item xs={12} sm={2} md={2} lg={2}>
                             <TextField label="Wartość VAT" fullWidth 
-                            value={id} onChange={this.ChangeProductValue('TaxValue')}
+                            value={TaxValue}
                             InputProps={{endAdornment:<InputAdornment position="end">zł</InputAdornment>}} disabled/>
                     </Grid>
                     </Grid>)

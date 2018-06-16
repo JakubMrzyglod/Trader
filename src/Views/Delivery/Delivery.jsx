@@ -15,7 +15,9 @@ class Delivery extends React.Component {
   componentDidMount() {
     this.props.DeliveryFetched(Data); }
   ToggleView=()=>{
-    this.setState({Open:!this.state.Open})
+    this.setState({Open:!this.state.Open});
+
+    
   }
   render(){
     return (

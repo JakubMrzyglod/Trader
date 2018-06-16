@@ -4,8 +4,8 @@ let EmptySuppolier = {id:0, Name:'', Adress:'', City:'', ZipCode:'',TaxNumber:''
 let initialState ={
     Fake: false,
     EditOpen: false,
-    Delivery:{valueSummary, TaxValueSummary},
-    Date:'a',
+    Delivery:{ValueSummary:'', TaxValueSummary:''},
+    Date:'',
     DocNumber:'',
     Suppolier:{},
     NewProduct:EmptyProduct,
@@ -25,9 +25,11 @@ export const Delivery= (state=initialState, action) => {
         case 'EDIT_OPEN':
         return{
             ...state,
-            EditOpen: true, 
-            Suppolier:{},
+            Suppolier:EmptySuppolier,
             NewProduct:EmptyProduct,
+            Date:'',
+            DocNumber:'',
+            Delivery:{ValueSummary:'', TaxValueSummary:''},
             Products:[]
         }
         case 'EDIT_CLOSE':
@@ -77,7 +79,7 @@ export const Delivery= (state=initialState, action) => {
         return{
             ...state,Products: DeliveryEdit.Products, Suppolier: DeliveryEdit.Suppolier, 
             Date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber, EditOpen: true, 
-            Delivery:{...state.Delivery,ValueSummary:DeliveryEdit.Net, TaxValueSummary: DelvieryEdit.Tax}
+            Delivery:{ValueSummary:DeliveryEdit.Net, TaxValueSummary: DeliveryEdit.Tax}
         }
         default:
         return state

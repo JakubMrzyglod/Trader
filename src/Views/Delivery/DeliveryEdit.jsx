@@ -20,7 +20,6 @@ import {
     MenuItem
 } from '@material-ui/core';
 import { Delete, Add } from '@material-ui/icons';
-import Summary from './Summary.js';
 
 const styles = theme => ({
     button: {

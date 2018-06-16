@@ -17,11 +17,15 @@ class DeliveryList extends React.Component {
       this.props.EditDelivery(id);
       this.props.ToggleView();
     }
+    NewDelivery = () =>{
+      this.props.EditOpen();
+      this.props.ToggleView();
+    }
     render(){
     const {Deliveries, ToggleView, EditDelivery} = this.props;
     return (
         <div>
-          <Button variant="raised" color="primary" onClick={ToggleView}>Dodaj Dostawę</Button>
+          <Button variant="raised" color="primary" onClick={()=>this.NewDelivery()}>Dodaj Dostawę</Button>
         <Table>
         <TableHead>
           <TableRow>
