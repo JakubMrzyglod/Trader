@@ -42,9 +42,8 @@ class ProductsList extends React.Component{
                     </Grid>}
                     />
                     <ListItemSecondaryAction>
-                        {Product.id}
                         <IconButton color="secondary" 
-                        onClick={()=>this.props.RemoveProduct(Product.id)}
+                        onClick={()=>this.props.RemoveProduct(Product)}
                         >
                             <Delete />
                         </IconButton>

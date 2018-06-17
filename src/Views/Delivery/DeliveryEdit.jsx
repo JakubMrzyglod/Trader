@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {EditClose } from '../../Store/Actions.js';
+import {EditClose, SaveDelivery } from '../../Store/Actions.js';
 import Suppolier from './EditSuppolier.jsx';
 import NewProduct from './NewProduct.jsx';
 import Details from './Details.jsx';
@@ -27,10 +27,13 @@ const styles = theme => ({
     },
   });
 
- 
-class DeliveryEdit extends React.Component {
-    render(){
-        const {classes, ToggleView} = this.props;
+  class DeliveryEdit extends React.Component {
+      SaveDelivery =()=>{
+          this.props.SaveDelivery();
+          this.props.ToggleView();
+      }
+      render(){
+        const {classes, ToggleView, SaveDelivery} = this.props;
         
     return (
         <div>
@@ -40,7 +43,7 @@ class DeliveryEdit extends React.Component {
             <ProductsList/>
             <Summary />
          
-        <Button variant="raised" color="primary" className={classes.button}>Zapisz</Button>            
+        <Button variant="raised" color="primary" className={classes.button} onClick={this.SaveDelivery}>Zapisz</Button>            
         <Button variant="Inlined" color="default" className={classes.button} onClick={ToggleView}>Anuluj</Button>            
         </div>
         
@@ -58,6 +61,6 @@ const mapStateToProps = state => {
     return{}
   };
 
-const mapDispatchToProps = {EditClose};
+const mapDispatchToProps = {EditClose, SaveDelivery};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(DeliveryEdit));

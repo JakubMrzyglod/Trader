@@ -27,9 +27,9 @@ export const DeliveryFetched = (Data) => ({
     type: 'FETCH_DELIVERY_SUCCESS',
     Data
 });
-export const RemoveProduct = (id) => ({
+export const RemoveProduct = (Product) => ({
     type: 'REMOVE_PRODUCT',
-    id
+    Product
 });
 export const EditProduct = (id) => ({
     type: 'EDIT_PRODUCT',
@@ -42,6 +42,9 @@ export const EditDelivery = (id) => ({
     type: 'EDIT_DELIVERY',
    id
 });
+export const SaveDelivery = () =>({
+    type: 'SAVE_DELIVERY'
+})
 
 
 export const updateSearchValue = (e) => ({

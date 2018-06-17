@@ -4,12 +4,12 @@ import {connect} from "react-redux";
 import {ChangeDeliveryInfo} from '../../Store/Actions.js';
 import {Grid, TextField, Hidden} from '@material-ui/core'
 
-class Detiles extends React.Component{
+class Details extends React.Component{
     HandleChangeInput = (name) => e =>{
         this.props.ChangeDeliveryInfo(name, e.target.value)
     }
     render(){
-    const {Date, DocNumber} = this.props.Delivery;
+    const {Date, DocNumber} = this.props.Details;
     return(
         <Grid container spacing={32}>
         <Hidden olny="xs">
@@ -27,10 +27,10 @@ class Detiles extends React.Component{
 }
 const mapStateToProps = state => {
     return{
-        Delivery: state.Delivery,
+        Details: state.Delivery.Details,
     }
   };
 
 const mapDispatchToProps = {ChangeDeliveryInfo};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detiles);
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
