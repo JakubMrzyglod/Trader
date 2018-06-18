@@ -29,11 +29,11 @@ const styles = theme => ({
 
   class DeliveryEdit extends React.Component {
       SaveDelivery =()=>{
-          this.props.SaveDelivery();
+        DeliveryId===0?this.props.SaveDelivery():this.props.UpdateDelivery();
           this.props.ToggleView();
       }
       render(){
-        const {classes, ToggleView, SaveDelivery} = this.props;
+        const {classes, ToggleView, SaveDelivery, DeliveryId} = this.props;
         
     return (
         <div>
@@ -58,7 +58,7 @@ DeliveryEdit.propTypes = {
 
 
 const mapStateToProps = state => {
-    return{}
+    return{DeliveryId: state.Delivery.DeliveryId}
   };
 
 const mapDispatchToProps = {EditClose, SaveDelivery};
