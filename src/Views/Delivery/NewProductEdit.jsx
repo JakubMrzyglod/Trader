@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {ChangeProductValue} from '../../Store/Actions.js';
 import {Grid, TextField,MenuItem, InputAdornment} from '@material-ui/core';
+import ProductInput from './ProductInput.jsx'
+
 
 class NewProductEdit extends React.Component{
     ChangeProductValue = (name) => e =>{
@@ -13,7 +15,8 @@ class NewProductEdit extends React.Component{
     return(
         <Grid container spacing={32}>
                     <Grid item xs={12} sm={2} md={2} lg={4}>
-                            <TextField label="Produkt" fullWidth value={Name} onChange={this.ChangeProductValue('Name')} />
+                            {/* <TextField label="Produkt" fullWidth value={Name} onChange={this.ChangeProductValue('Name')} /> */}
+                            <ProductInput />
                     </Grid>
                     <Grid item xs={12} sm={2} md={2} lg={1}>
                             <TextField label="Ilość" fullWidth value={Quantity} onChange={this.ChangeProductValue('Quantity')}  type="number" />
