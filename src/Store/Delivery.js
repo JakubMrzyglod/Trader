@@ -4,7 +4,6 @@ const EmptySuppolier = {id:0, Name:'', Adress:'', City:'', ZipCode:'',TaxNumber:
 const EmptyDetails={Date:'',DocNumber:''}
 const initialState ={
     DeliveryId:0,
-    Fake: false,
     EditOpen: false,
     Delivery:{},
     Details:{},
@@ -69,10 +68,11 @@ export const Delivery= (state=initialState, action) => {
                 TaxValueSummary:state.Delivery.TaxValueSummary-NewProduct.TaxValue}
         }
         case 'ADD_PRODUCT':
-        let stock = state.Products;
-        let NewId = state.NewProduct.id;
+        let NewId = state.NewProduct.id;    
         if(NewId === 0) stock.map(item => (NewId = item.id)) && NewId++
-        stock.push({
+        stock = [
+            ...state.Products,
+            {
             "id": NewId,
             "Name": state.NewProduct.Name,
             "Price": state.NewProduct.Price,
@@ -80,9 +80,9 @@ export const Delivery= (state=initialState, action) => {
             "Tax": state.NewProduct.Tax,
             "Value": state.NewProduct.Price*state.NewProduct.Quantity,
             "TaxValue": state.NewProduct.Price*state.NewProduct.Quantity*state.NewProduct.Tax/100
-        })         
+        }]        
         return{
-            ...state,Fake:!state.Fake,
+            ...state,
             Delivery:{
                 ValueSummary:state.Delivery.ValueSummary+state.NewProduct.Price*state.NewProduct.Quantity, 
                 TaxValueSummary:state.Delivery.TaxValueSummary+state.NewProduct.Price*state.NewProduct.Quantity*state.NewProduct.Tax/100},
