@@ -1,7 +1,7 @@
 {
     "Products": [
-        {"id": 1, "Name": "Xiaomi", "Category": "Telefony", "Price": "650", "Quantity": 0},
-        {"id": 2, "Name": "LG", "Category": "Telewizory", "Price":"1650", "Quantity": 0},
-        {"id": 3, "Name": "Samsung s5", "Category": "Telefony", "Price": "1000", "Quantity": 0}
+        {"id": 1, "Name": "Xiaomi", "Category": "Telefony", "Price": "650","Tax":23, "Quantity": 0},
+        {"id": 2, "Name": "LG", "Category": "Telewizory", "Price":"1650","Tax":23, "Quantity": 0},
+        {"id": 3, "Name": "Samsung s5", "Category": "Telefony", "Price": "1000","Tax":23, "Quantity": 0}
     ]
   }

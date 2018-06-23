@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import {connect} from "react-redux";
+import {ChangeProductValue, GetProductValue} from '../../Store/Actions.js';
 import Products from '../../Data/Warehouse.json'
 
 const suggestions = Products.Products ;
@@ -59,9 +60,6 @@ function renderSuggestionsContainer(options) {
   );
 }
 
-function getSuggestionValue(suggestion) {
-  return;
-}
 
 function getSuggestions(value) {
   const inputValue = value.trim().toLowerCase();
@@ -86,7 +84,6 @@ const styles = theme => ({
   container: {
     flexGrow: 1,
     position: 'relative',
-    height: 250,
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -106,10 +103,16 @@ const styles = theme => ({
 });
 
 class ProductInput extends React.Component {
+  
   state = {
     value: '',
     suggestions: [],
   };
+
+  getSuggestionValue = (suggestion)=> {
+    this.props.GetProductValue(suggestion)
+    return suggestion.Name;
+  }
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
@@ -124,13 +127,16 @@ class ProductInput extends React.Component {
   };
 
   handleChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue,
-    });
+    this.props.ChangeProductValue('Name' ,newValue)
+    //this.state.suggestions.map(suggestion=>{newValue === suggestion.Name ?details = {Price: suggestion.Price, Tax: suggestion.Tax,Name:suggestion.Name}:''})
+    
   };
+  ChangeProductValue = (name) => e =>{
+    this.props.ChangeProductValue(name, e.target.value)
+};
 
   render() {
-    const { classes } = this.props;
+    const { classes, ProductName } = this.props;
 
     return (
       <Autosuggest
@@ -140,16 +146,17 @@ class ProductInput extends React.Component {
           suggestionsList: classes.suggestionsList,
           suggestion: classes.suggestion,
         }}
+        onSuggestionSelected={this.onSuggestionSelected}
         renderInputComponent={renderInput}
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
-        getSuggestionValue={getSuggestionValue}
+        getSuggestionValue={this.getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={{
           classes,
-          value: this.state.value,
+          value: ProductName,
           onChange: this.handleChange,
         }}
       />
@@ -162,9 +169,9 @@ ProductInput.propTypes = {
 };
 const mapStateToProps = state => {
     return{
-      Products: state.Products.Products
+      ProductName: state.Delivery.NewProduct.Name
     }};
   
-  const mapDispatchToProps = {};
+  const mapDispatchToProps = {ChangeProductValue, GetProductValue};
   
   export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ProductInput));

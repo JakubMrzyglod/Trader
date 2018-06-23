@@ -69,24 +69,23 @@ export const Delivery= (state=initialState, action) => {
         }
         case 'ADD_PRODUCT':
         let NewId = state.NewProduct.id;    
-        if(NewId === 0) stock.map(item => (NewId = item.id)) && NewId++
-        stock = [
-            ...state.Products,
-            {
-            "id": NewId,
-            "Name": state.NewProduct.Name,
-            "Price": state.NewProduct.Price,
-            "Quantity": state.NewProduct.Quantity,
-            "Tax": state.NewProduct.Tax,
-            "Value": state.NewProduct.Price*state.NewProduct.Quantity,
-            "TaxValue": state.NewProduct.Price*state.NewProduct.Quantity*state.NewProduct.Tax/100
-        }]        
+        if(NewId === 0) state.Products.map(item => (NewId = item.id)) && NewId++        
         return{
             ...state,
             Delivery:{
                 ValueSummary:state.Delivery.ValueSummary+state.NewProduct.Price*state.NewProduct.Quantity, 
                 TaxValueSummary:state.Delivery.TaxValueSummary+state.NewProduct.Price*state.NewProduct.Quantity*state.NewProduct.Tax/100},
-            Products:Sort(stock),NewProduct:EmptyProduct }
+            Products:Sort(
+                [...state.Products,
+                {
+                "id": NewId,
+                "Name": state.NewProduct.Name,
+                "Price": state.NewProduct.Price,
+                "Quantity": state.NewProduct.Quantity,
+                "Tax": state.NewProduct.Tax,
+                "Value": state.NewProduct.Price*state.NewProduct.Quantity,
+                "TaxValue": state.NewProduct.Price*state.NewProduct.Quantity*state.NewProduct.Tax/100
+            }]),NewProduct:EmptyProduct }
         case 'EDIT_DELIVERY':
         let DeliveryEdit;
         state.Deliveries.map(Delivery =>Delivery.id === action.id && (DeliveryEdit= Delivery))
@@ -112,6 +111,9 @@ export const Delivery= (state=initialState, action) => {
         return{
             ...state,Deliveries:Sort(Deliveries)
         }
+        case 'GET_PRODUCT_VALUE':
+        let details = action.details;
+        return {...state, NewProduct:{...state.NewProduct, Price:details.Price, Tax: details.Tax}}
         default:
         return state
     }

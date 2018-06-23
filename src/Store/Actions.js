@@ -60,3 +60,7 @@ export const Change = (name, value) => ({
     text: value,
     name: name
 })
+export const GetProductValue = (details) =>({
+    type: 'GET_PRODUCT_VALUE',
+    details: details
+})
