@@ -114,6 +114,16 @@ export const Delivery= (state=initialState, action) => {
         case 'GET_PRODUCT_VALUE':
         let details = action.details;
         return {...state, NewProduct:{...state.NewProduct, Price:details.Price, Tax: details.Tax}}
+        case 'GET_SUPPOLIER_VALUE':
+        let suppolierDetails = action.suppolierDetails;
+        const suppolier = {
+            id:suppolierDetails.id ,
+            Name:suppolierDetails.Name,
+            Adress:suppolierDetails.Adress,
+            City:suppolierDetails.City,
+            ZipCode:suppolierDetails.ZipCode,
+            TaxNumber:suppolierDetails.TaxNumber}
+        return {...state, Suppolier:suppolier}
         default:
         return state
     }

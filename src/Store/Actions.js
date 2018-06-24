@@ -64,3 +64,7 @@ export const GetProductValue = (details) =>({
     type: 'GET_PRODUCT_VALUE',
     details: details
 })
+export const GetSuppolierValue = (details) =>({
+    type: 'GET_SUPPOLIER_VALUE',
+    suppolierDetails: details
+})
