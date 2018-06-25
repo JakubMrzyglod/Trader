@@ -5,14 +5,14 @@
         {"id": 3, "Name": "Marc-Pol Sp. z o.o.", "Adress":"ul. Elizy Orzeszkowej 12", "City":"Czechowice Dziedzice", "ZipCode":"43-200","TaxNumber":"54545452"}
     ],
     "Deliveries":[
-        {   "id":1, "DocNumber":"0001", "Date":"data 1", "Net":15000, "Tax":3000,
+        {   "id":1, "DocNumber":"0001", "Date":"2018-06-01", "Net":15000, "Tax":3000, "Year":2018,"DeliveryNote":1,
             "Suppolier":{"id": 1, "Name": "Avio Areo Sp. z o.o.", "Adress":"ul.Grażyńskiego 141", "City":"Bielsko-Biała", "ZipCode":"43-300","TaxNumber":"547547547"},
             "Products":[
                     {"id": 1, "Name": "Xiaomi",  "Price": "500", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000},
                     {"id": 2, "Name": "LG", "Price":"1500", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000},
                     {"id": 3, "Name": "Samsung s5",  "Price": "900", "Quantity": 10, "Tax":23, "Value":5000, "TaxValue":1000}
             ]},
-        {   "id":2, "DocNumber":"0002", "Date":"data 2", "Net":15000, "Tax":3000,
+        {   "id":2, "DocNumber":"0002", "Date":"2018-06-02", "Net":15000, "Tax":3000,"Year":2018,"DeliveryNote":2,
                 "Suppolier":{"id": 2, "Name": "Huthinson Poland Sp. z o.o.", "Adress":"Ródawka 101", "City":"Bielsko-Biała", "ZipCode":"43-300","TaxNumber":"54788883"},
                 "Products":[
                         {"id": 1, "Name": "Xiaomi", "Price": "550", "Quantity": 20, "Tax":23, "Value":5000, "TaxValue":1000},

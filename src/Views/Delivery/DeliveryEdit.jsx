@@ -28,10 +28,10 @@ const styles = theme => ({
   });
 
   class DeliveryEdit extends React.Component {
-    //   SaveDelivery =()=>{
-    //     DeliveryId===0?this.props.SaveDelivery():this.props.UpdateDelivery();
-    //       this.props.ToggleView();
-    //   }
+      SaveDelivery =()=>{
+        this.props.DeliveryId===0?this.props.SaveDelivery():this.props.UpdateDelivery();
+          this.props.ToggleView();
+      }
       render(){
         const {classes, ToggleView, SaveDelivery, DeliveryId} = this.props;
         

@@ -1,7 +1,7 @@
 let DeliveriesList;
 const EmptyProduct ={id:0,Name:'',Quantity:'',Price:'',Tax:'',Value:0,TaxValue:0};
 const EmptySuppolier = {id:0, Name:'', Adress:'', City:'', ZipCode:'',TaxNumber:''}
-const EmptyDetails={Date:'',DocNumber:''}
+const EmptyDetails={date:'',Year:'',DocNumber:'',DeliveryNote:''}
 const initialState ={
     DeliveryId:0,
     EditOpen: false,
@@ -26,11 +26,16 @@ export const Delivery= (state=initialState, action) => {
             ...state, Suppoliers: action.Data.Suppoliers, Deliveries: action.Data.Deliveries
         }
         case 'EDIT_OPEN':
+        let DeliveryNote = 0;
+        let today = new Date;
+        let date = `${today.getFullYear()}-${today.getMonth()<10?0:''}${today.getMonth()}-${today.getDay()<10?0:''}${today.getDay()}`.trim();
+        state.Deliveries.map(Delivery => {Delivery.Year === today.getFullYear()?DeliveryNote =Delivery.DeliveryNote:''})
+        DeliveryNote++;
         return{
             ...state,
             Suppolier:EmptySuppolier,
             NewProduct:EmptyProduct,
-            Details:EmptyDetails,
+            Details:{date:date,DocNumber:'',Year:today.getFullYear(),DeliveryNote:DeliveryNote},
             Delivery:{ValueSummary:0, TaxValueSummary:0},
             Products:[]
         }
@@ -91,7 +96,8 @@ export const Delivery= (state=initialState, action) => {
         state.Deliveries.map(Delivery =>Delivery.id === action.id && (DeliveryEdit= Delivery))
         return{
             ...state,Products: DeliveryEdit.Products, Suppolier: DeliveryEdit.Suppolier, DeliveryId: action.id, 
-            Details: {Date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber}, EditOpen: true, 
+            Details: {date: DeliveryEdit.Date, DocNumber:DeliveryEdit.DocNumber,Year:DeliveryEdit.Year,DeliveryNote:DeliveryEdit.DeliveryNote},
+            EditOpen: true, 
             Delivery:{ValueSummary:DeliveryEdit.Net, TaxValueSummary: DeliveryEdit.Tax}
         }
         case 'SAVE_DELIVERY':
