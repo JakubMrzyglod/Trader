@@ -45,7 +45,9 @@ export const EditDelivery = (id) => ({
 export const SaveDelivery = () =>({
     type: 'SAVE_DELIVERY'
 })
-
+export const UpdateDelivery = () =>({
+    type: 'UPDATE_DELIVERY'
+})
 
 export const updateSearchValue = (e) => ({
     type: 'UPDATE_SEARCH_VALUE',

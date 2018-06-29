@@ -19,6 +19,7 @@ const RemoveDelivery = (Deliveries, id) => Deliveries.filter(Delivery => Deliver
 const Sort = (Products) => Products.sort((t1, t2) => (t1.id < t2.id ? -1 : 1));
 const NewValueSummary = (Products) =>{ let Value = 0; Products.map(Product=>Value=Value+Product.Value); return Value;};
 const NewTaxValueSummary = (Products) =>{ let Value = 0; Products.map(Product=>Value=Value+Product.TaxValue); return Value;};
+const AddProductsToStock = (Products) =>{Products}
 export const Delivery= (state=initialState, action) => {
     switch (action.type){
         case 'FETCH_DELIVERY_SUCCESS':
@@ -105,6 +106,7 @@ export const Delivery= (state=initialState, action) => {
         let id = state.DeliveryId;
         if(id !== 0) Deliveries=RemoveDelivery(Deliveries, id)
         else Deliveries.map(item=>(id = item.id)&&id++)
+        AddProductsToStock(state.Products.Products)
         Deliveries.push(
             {   "id":id,
                 "DocNumber":state.Details.DocNumber,
@@ -116,6 +118,11 @@ export const Delivery= (state=initialState, action) => {
             })
         return{
             ...state,Deliveries:Sort(Deliveries)
+        }
+        case 'UPDATE_DELVIERY':
+        
+        return{
+            ...state
         }
         case 'GET_PRODUCT_VALUE':
         let details = action.details;

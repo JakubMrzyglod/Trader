@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {EditClose, SaveDelivery } from '../../Store/Actions.js';
+import {EditClose, SaveDelivery, UpdateDelivery } from '../../Store/Actions.js';
 import Suppolier from './EditSuppolier.jsx';
 import NewProduct from './NewProduct.jsx';
 import Details from './Details.jsx';
@@ -61,6 +61,6 @@ const mapStateToProps = state => {
     return{DeliveryId: state.Delivery.DeliveryId}
   };
 
-const mapDispatchToProps = {EditClose, SaveDelivery};
+const mapDispatchToProps = {EditClose, SaveDelivery, UpdateDelivery};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(DeliveryEdit));

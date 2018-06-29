@@ -30,7 +30,6 @@ class Details extends React.Component{
         onChange={this.HandleChangeInput('date')}
         value={date}
       />
-    {/* <TextField label="Data" margin="normal" typ="Date" fullWidth   InputLabelProps={{shrink: true,}} />  */}
 </Grid>
 <Grid item xs={6} sm={2} md={2} lg={2}>
 <TextField label="PZ" margin="normal" fullWidth value={`${Year}/${DeliveryNote}`} />
